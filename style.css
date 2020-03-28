@@ -2,3 +2,15 @@ html {
   font-family: "Arial", "Courier New", "Courier", "monospace";
   text-align: center;
 }
+
+body {
+  background-color: rgb(251, 245, 237);
+}
+
+#piano>#notes>.black {
+  color: black;
+}
+
+#piano>#notes>.white {
+  color: white;
+}
