@@ -1,6 +1,7 @@
 import parse from "./music/parser.js";
+
 const loadMIDI = async function () {
-  const music = await parse("/music/csv/fur_elise.csv");
+  const music = await parse("/music/csv/psalm_139.csv");
   // console.log(music);
   const notes = music.filter(
     d => d.type === "Note_on_c" || d.type === "Note_off_c");
@@ -91,7 +92,7 @@ const loadMIDI = async function () {
 const createPianoChart = function (notes) {
   // Chart specs
   let svg = d3.select("p#piano").append("svg")
-    .attr("width", "1000")
+    .attr("width", "1500")
     .attr("height", "600");
   let w = svg.attr("width");
   let h = svg.attr("height");
@@ -106,24 +107,24 @@ const createPianoChart = function (notes) {
       + (margins.top + ch / 4) + ")")
     .attr("stroke", "black")
     .attr("stroke-width", "2");
-  // Actual "canvas" of the piano
-  piano.append("rect")
+  piano.append("rect") // Actual "canvas" of the piano
     .attr("x", "0")
     .attr("y", "0")
     .attr("width", cw)
     .attr("height", ch / 2)
     .attr("fill", "none");
+
   let blackKeyHeight = ch / 4 * 1.2; // Adjust this to fit chart properly
 
+  // Here for now to help with debugging the area
   let canvas = svg.append("g").attr("id", "canvas")
     .attr("transform", "translate(" + margins.left + "," + margins.top + ")");
-  // Here for now to help with debugging the area
   canvas.append("rect")
     .attr("x", "0")
     .attr("y", "0")
     .attr("width", cw)
     .attr("height", ch)
-    .attr("stroke", "grey")
+    .attr("stroke", "none")
     .attr("stroke-width", "0.5")
     .attr("fill", "none");
 
@@ -200,19 +201,26 @@ const createPianoChart = function (notes) {
 
 // Starts the MIDI file.
 const play = function (notes, tempo, div) {
-  notes.forEach(row => {
-    setTimeout(() => {
-      if (row.type == "Note_on_c") {
-        noteOn(row.note);
-      } else if (row.type == "Note_off_c") {
-        noteOff(row.note);
-      } else {
-        console.log("Done!");
-      }
-    }, row.time * (500 / div) * (tempo / 500000));
-    // Long story short, some calculations were done based on the MIDICSV 
-    // documentation's info about "Tempo", "Header", and the random_chords file.
-  });
+  MIDIjs.play("music/midi/psalm_139.mid");
+  setTimeout(() => {
+    notes.forEach(row => {
+      setTimeout(() => {
+        if (row.type == "Note_off_c") {
+          noteOff(row.note);
+        } else if (row.type == "Note_on_c") {
+          if (row.velocity == 0) {
+            noteOff(row.note);
+          } else {
+            noteOn(row.note);
+          }
+        } else {
+          console.log("Done!");
+        }
+      }, row.time * (500 / div) * (tempo / 500000));
+      // Long story short, some calculations were done based on the MIDICSV 
+      // documentation's info about "Tempo", "Header", and the random_chords file.
+    });
+  }, 500);
 }
 
 // Changes the color of a note when pressed (played).
