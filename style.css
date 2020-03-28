@@ -14,3 +14,7 @@ body {
 #piano>#notes>.white {
   color: white;
 }
+
+#buttonContainer {
+  /* width: 100px; */
+}

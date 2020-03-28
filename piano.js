@@ -1,9 +1,10 @@
 import parse from "./music/parser.js";
 const loadMIDI = async function () {
-  const music = await parse("/music/csv/random_chords.csv");
+  const music = await parse("/music/csv/fur_elise.csv");
   // console.log(music);
-  const notes = music.filter(d => d.type === "Note_on_c" || d.type === "Note_off_c");
-  // console.log(notes);
+  const notes = music.filter(
+    d => d.type === "Note_on_c" || d.type === "Note_off_c");
+  console.log(notes);
 
   let md = createPianoChart(notes);
 
@@ -70,6 +71,21 @@ const loadMIDI = async function () {
         .attr("fill", "black");
     }
   }
+
+  // Tempo needed to calculate the speed of the animation
+  let tempo = music.filter(d => d.type === "Tempo");
+  tempo = tempo[0].channel;
+
+  let div = music.filter(d => d.type === "Header");
+  div = div[0].velocity;
+
+  // Now, process the MIDI file to show the animations.
+  d3.selectAll("#buttonContainer").append("button")
+    .text("Click me!")
+    .attr("type", "button")
+    .on("click", function () {
+      play(notes, tempo, div);
+    });
 }
 
 const createPianoChart = function (notes) {
@@ -122,7 +138,7 @@ const createPianoChart = function (notes) {
   pianoMin = pianoMin * 12;
   pianoMax = pianoMax * 12;
   extent = [pianoMin, pianoMax];
-  console.log("Piano range: [" + extent + "]");
+  // console.log("Piano range: [" + extent + "]");
 
   let pianoScale = d3.scaleLinear().domain([pianoMin, pianoMax]).range([0, cw]);
 
@@ -130,7 +146,7 @@ const createPianoChart = function (notes) {
     let left = pianoMin + i * 12;
     let right = left + 12;
     let blackBottoms = [1, 3, 6, 8, 10];
-    console.log(left + " " + right + "\n");
+    // console.log(left + " " + right + "\n");
 
     for (let j = left; j < right; j++) {
       // All keys (top half)
@@ -181,4 +197,50 @@ const createPianoChart = function (notes) {
     pianoScale: pianoScale
   };
 }
+
+// Starts the MIDI file.
+const play = function (notes, tempo, div) {
+  notes.forEach(row => {
+    setTimeout(() => {
+      if (row.type == "Note_on_c") {
+        noteOn(row.note);
+      } else if (row.type == "Note_off_c") {
+        noteOff(row.note);
+      } else {
+        console.log("Done!");
+      }
+    }, row.time * (500 / div) * (tempo / 500000));
+    // Long story short, some calculations were done based on the MIDICSV 
+    // documentation's info about "Tempo", "Header", and the random_chords file.
+  });
+}
+
+// Changes the color of a note when pressed (played).
+const noteOn = function (note) {
+  let n = d3.select("#note" + note);
+  if (n.attr("class") == "white") {
+    n.selectAll("rect")
+      .transition().duration(50)
+      .attr("fill", "#ff9999");
+  } else {
+    n.selectAll("rect")
+      .transition().duration(50)
+      .attr("fill", "#ff6666");
+  }
+}
+
+// Reverts the color of a note back when depressed.
+const noteOff = function (note) {
+  let n = d3.select("#note" + note);
+  if (n.attr("class") == "white") {
+    n.selectAll("rect")
+      .transition().duration(100)
+      .attr("fill", "white");
+  } else {
+    n.selectAll("rect")
+      .transition().duration(100)
+      .attr("fill", "black");
+  }
+}
+
 loadMIDI();
