@@ -10,14 +10,13 @@
 </head>
 
 <body>
-  <h1>MIDI Visualizer</h1>
-  <h2>Insert a MIDI file to see it play out on a virtual keyboard.</h2>
-  <p id="piano">
-    <script type="module" src="piano.js"></script>
-    <!-- MIDIjs used with permission from midijs.net, used to play the song. -->
-    <script type="text/javascript" src="//www.midijs.net/lib/midi.js"></script>
-  </p>
-  <div id="buttonContainer"></div>
+  <div id="pianoContainer">
+    <div id="piano" class="centered stacked">
+      <script type="module" src="piano.js"></script>
+      <!-- MIDIjs used with permission from midijs.net, used to play the song. -->
+      <script type="text/javascript" src="midi.js"></script>
+    </div>
+  </div>
 </body>
 
 </html>
