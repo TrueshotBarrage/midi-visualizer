@@ -135,6 +135,8 @@ const setButtonReady = function () {
     .on("click", function () {
       play(notes, tempo, div);
     });
+  button.select("rect#buttonRect")
+    .attr("fill", "#4CC550");
   button.select("text#buttonText")
     .transition().duration(100)
     .text("Ready!");
@@ -328,7 +330,7 @@ const createPianoChart = function (notes) {
     .attr("height", "50")
     .attr("stroke", "#4C8F50")
     .attr("stroke-width", "0.5")
-    .attr("fill", "#4CC550")
+    .attr("fill", "red")
     .attr("id", "buttonRect");
   button.append("text") // Button text
     .text("Loading...")
