@@ -6,7 +6,7 @@ MIDI Visualizer processes MIDI files to synthesize the song and create a full vi
 
 The music synthesized from the MIDI files comes from a library called [MIDIjs](http://www.midijs.net/), an open-source MIDI synthesizer built for pure JavaScript. As such, everything is portable and contained within a website. You can try out the project [here](https://trueshotbarrage.github.io/midi-visualizer/).
 
-As of now, the visualizer only plays a preset MIDI file, but I am planning to add functionality for users to try uploading their own MIDI file to synthesize. (It's going to take some time, as I need to have server-side interaction on the webpage, which means I need to redesign my existing website to allow for that.)
+As of now, the visualizer only plays a few preset MIDI files, but I am planning to add functionality for users to try uploading their own MIDI file to synthesize. (It's going to take some time, as I need to have server-side interaction on the webpage, which means I need to redesign my existing website to allow for that.)
 
 ## How to use
 ![MIDI Visualizer in action](images/main.png)
