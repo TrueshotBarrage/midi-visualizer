@@ -1,5 +1,5 @@
 # MIDI Visualizer
-My take on parsing & visualizing MIDI files in a user-friendly format. 
+My take on parsing & visualizing MIDI files in a user-friendly format, all contained in an HTML web page & minimal JavaScript.
 
 ## Functionality
 MIDI Visualizer processes MIDI files to synthesize the song and create a full visualization of the notes played, using a popular visualization library called [d3](https://d3js.org/). I used d3 to construct the piano with lots of lines and rectangles. Similarly, the played notes of the MIDI file are SVG rectangles that overlay on top of the piano with a pink fill.
