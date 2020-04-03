@@ -7,14 +7,14 @@ var div;
 var music;
 
 // Default CSV/MIDI file.
-var csvFile = "music/csv/psalm_139.csv";
-var midiFile = "music/midi/psalm_139.mid";
+var csvFile = "./music/csv/psalm_139.csv";
+var midiFile = "./music/midi/psalm_139.mid";
 
 // Selects a random song from the music directory.
 const selectRandomSong = function () {
   let songList = ["psalm_139", "holy_is_the_lord", "fur_elise"];
-  let csvDir = "music/csv/";
-  let musicDir = "music/midi/";
+  let csvDir = "./music/csv/";
+  let musicDir = "./music/midi/";
 
   let chosenSong = songList[Math.floor(Math.random() * songList.length)];
   csvFile = csvDir + chosenSong + ".csv";
