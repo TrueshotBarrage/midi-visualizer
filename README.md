@@ -1,6 +1,8 @@
 # MIDI Visualizer
 Parsing & visualizing MIDI files in a user-friendly format. 
 
+![MIDI Visualizer in action](images/main.png)
+
 All contained in an HTML web page & minimal JavaScript.
 
 ## Functionality
@@ -11,11 +13,11 @@ The music synthesized from the MIDI files comes from a library called [MIDIjs](h
 As of now, the visualizer only plays a few preset MIDI files, but I am planning to add functionality for users to try uploading their own MIDI file to synthesize. (It's going to take some time, as I need to have server-side interaction on the webpage, which means I need to redesign my existing website to allow for that.)
 
 ## How to use
-![MIDI Visualizer in action](images/main.png)
-
 Give the browser some time to download the necessary assets for MIDI synthesis. On a good connection, it shouldn't take longer than ~2 seconds. Once it is ready to play the animation, the button will turn from red to green, which means you can click it to play the animation. Enjoy!
  
 ## Changelog
+* April 20th, 2020
+  * Added new song, "아무것도 두려워말라 (Don't Be Afraid)"
 * April 2nd, 2020
   * README file updated
   * Originally uploaded the "finalized" project around late March, as seen in commit history
