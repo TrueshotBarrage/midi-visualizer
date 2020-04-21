@@ -24,3 +24,4 @@ Give the browser some time to download the necessary assets for MIDI synthesis. 
 
 ## Known bugs
 * Sometimes, clicking the button the split second it is ready may cause the visual animation to start without the music.
+* Currently, changing tempos aren't supported. The animation will play in the original tempo throughout the duration of the song.
