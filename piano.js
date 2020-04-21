@@ -12,7 +12,7 @@ var midiFile = "./music/midi/psalm_139.mid";
 
 // Selects a random song from the music directory.
 const selectRandomSong = function () {
-  let songList = ["psalm_139", "holy_is_the_lord", "fur_elise"];
+  let songList = ["psalm_139", "holy_is_the_lord", "fur_elise", "dont_be_afraid"];
   let csvDir = "./music/csv/";
   let musicDir = "./music/midi/";
 
