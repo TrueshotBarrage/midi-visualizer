@@ -19,6 +19,9 @@ If you find bugs with the upload or anything else, please let me know in the **I
 Give the browser some time to download the necessary assets for MIDI synthesis. On a good connection, it shouldn't take longer than ~2 seconds. Once it is ready to play the animation, the button will turn from red to green, which means you can click it to play the animation. Enjoy!
  
 ## Changelog
+* July 11th, 2020
+  * Revamped & diversified the colors for each MIDI track. 
+  * Decorated the file upload button.
 * July 8th, 2020
   * User upload feature allows for any MIDI file to be parsed, animated, and played
 * April 20th, 2020
