@@ -151,6 +151,9 @@ const play = function (notes, tempo, div) {
   setTimeout(() => {
     notes.forEach(row => {
       setTimeout(() => {
+        MIDIjs.player_callback = (ev) => {
+          console.log(ev.time);
+        }
         if (row.type == "Note_off_c") {
           noteOff(row.note);
         } else if (row.type == "Note_on_c") {
